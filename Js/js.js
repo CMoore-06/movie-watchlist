@@ -69,7 +69,20 @@ function renderMovies() {
 }
 
 form.addEventListener("submit", (event) => {
-  // TODO (Step 5)
+  event.preventDefault();
+  if(titleInput.value.trim() == "") {
+    message.textContent = "Please enter a movie title.";
+  }
+
+  else if (genreSelect.value == "") {
+    message.textContent = "Please select a genre.";
+  }
+
+  else {
+    message.textContent = "";
+    message2.textContent = "";
+    form.addEventListener("submit", saveMovies);
+  }
 });
 
 loadMovies();
