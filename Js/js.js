@@ -8,12 +8,13 @@ const emptyMessage = document.getElementById("empty-message");
 
 const watchList = {
     // movies: [],
-    movies: [{ title: "The Princess Bride", genre: "Adventure", watched: false }],
+    movies: [{ title: "The Princess Bride", genre: "Adventure", watched: false }, 
+            {title: "Godzilla 2014", genre: "Action", watched: true}],
     toggleWatched(index) {
-        // TODO (Step 4)
+        this.movies[index].watched = !this.movies[index].watched;
     },
     removeMovie(index) {
-        // TODO (Step 4)
+        this.movies.splice(index, 1);
     }
 };
 
@@ -30,13 +31,13 @@ function loadMovies() {
 }
 
 function renderMovies() {
+    movieList.replaceChildren(); // Remove the old display, not the data.
+
     if(watchList.movies.length == 0) {
         emptyMessage.textContent = "You currently have no movies in your watchlist.";
     }
 
     else {
-        movieList.replaceChildren(); // Remove the old display, not the data.
-
         watchList.movies.forEach((movie, index) => {
         const card = document.createElement("li");
         const title = document.createElement("h3");
@@ -49,11 +50,19 @@ function renderMovies() {
         button.type = "button";
         button.textContent = movie.watched ? "Mark Unfinished" : "Mark Finished";
         button.addEventListener("click", () => {
-            watchList.markFinished(index); // 1. change the data
+            watchList.toggleWatched(index); // 1. change the data
             renderMovies();                   // 2. redraw the list
         });
 
-        card.append(title, details, button);
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "Remove Movie";
+        removeButton.addEventListener("click", () => {
+            watchList.removeMovie(index);
+            renderMovies();
+        });
+
+        card.append(title, details, button, removeButton);
         movieList.append(card);
         });
     }
