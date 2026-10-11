@@ -23,31 +23,33 @@ const watchList = {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   if (titleInput.value.trim() == "") {
-    message.textContent = "Please enter a movie title.";
-  }
+        message.textContent = "Please enter a movie title.";
+    }
 
   else if (genreSelect.value == "") {
-    message.textContent = "Please select a genre.";
-  }
+        message.textContent = "Please select a genre.";
+    }
 
   else {
-    message.textContent = "";
-    form.addEventListener("submit", saveMovies);
-  }
+        message.textContent = "";
+        saveMovies();
+    }
 });
 
 //Functions
 function saveMovies() {
-  newMovie = {
-    title: titleInput.value.trim(),
-    genre: genreSelect.value,
-    watched: false
-  };
+    newMovie = {
+        title: titleInput.value.trim(),
+        genre: genreSelect.value,
+        watched: false
+    };
 
-  watchList.movies.push(newMovie);
-  renderMovies();
+    watchList.movies.push(newMovie);
+    renderMovies();
 
-  localStorage.setItem("movies", JSON.stringify(watchList.movies));
+    localStorage.setItem("movies", JSON.stringify(watchList.movies));
+    titleInput.value = "";
+    genreSelect.value = "";
 }
 
 function loadMovies() {
@@ -68,7 +70,7 @@ function renderMovies() {
     movieList.replaceChildren(); // Remove the old display, not the data.
 
     if(watchList.movies.length == 0) {
-        emptyMessage.textContent = "You currently have no movies in your watchlist.";
+        emptyMessage.textContent = "Your watchlist is empty. Add a movie to get started.";
     }
 
     else {

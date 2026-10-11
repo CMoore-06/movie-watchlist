@@ -1,0 +1,73 @@
+/* HTML Elements */
+header {
+    background-color: green;
+    padding: 5px;
+    margin: 5px;
+}
+
+body {
+    text-align: center;
+    border: 5px solid green;
+}
+
+label {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+li {
+    border: 2px solid green;
+    margin: 5px;
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 50%;
+    display: block;
+    justify-self: center;
+}
+
+li button {
+    padding: 5px;
+    margin: 5px;
+}
+
+button {
+    background-color: green;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+/* IDs */
+#movie-list {
+    list-style-type: none;
+}
+
+#submit {
+    width: 10rem;
+    height: 3rem;
+}
+
+#form-message {
+    width: 30%;
+    justify-self: center;
+}
+
+#empty-message {
+    background-color: green;
+    width: 50%;
+    justify-self: center;
+}
+
+/* Classes */
+
+/* Media Statements */
+@media (width > 530px) {
+    #media {
+        display: none;
+    }
+
+    #empty-message {
+        width: 30%;
+    }
+}
